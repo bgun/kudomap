@@ -1,0 +1,50 @@
+{
+  "name": "kudomap",
+  "version": "0.0.1",
+  "description": "topical location mapping",
+  "main": "server.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgun/kudomap.git"
+  },
+  "keywords": [
+    "map",
+    "maps",
+    "places",
+    "kudomap",
+    "kudomaps",
+    "kudos",
+    "reddit",
+    "voat"
+  ],
+  "author": "Ben Gundersen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bgun/kudomap/issues"
+  },
+  "homepage": "https://github.com/bgun/kudomap#readme",
+  "dependencies": {
+    "bluebird": "^2.9.32",
+    "express": "^4.13.1",
+    "lodash": "^3.10.0",
+    "mapbox-gl": "^0.8.1",
+    "page": "^1.6.3",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-less": "^3.0.3",
+    "gulp-live-server": "0.0.23",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-watch": "^4.2.4",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
