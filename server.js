@@ -8,7 +8,7 @@ var React   = require('react');
 var port = process.env.PORT || 9000;
 var server = express();
 
-var App = require('./app.js');
+var App = require('./build/app.js');
 
 var indexHtml = fs.readFileSync('./index.html', { encoding: 'utf-8' });
 
@@ -39,8 +39,8 @@ global.app.routes.forEach(function(route) {
 
 });
 
-server.use('/public', express.static('public'));
-server.use('/public', express.static('build/public'));
+server.use('/public', express.static('./public'));
+server.use('/public', express.static('./build/public'));
 
 server.use(function(err, req, res, next) {
   console.error(err.stack);

@@ -9,7 +9,7 @@ var less       = require('gulp-less');
 var source     = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 
-var livereload = gls.new('./build/server.js');
+var livereload = gls.new('./server.js');
 
 gulp.task('browserify', ['babel'], function() {
   browserify({
