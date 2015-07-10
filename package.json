@@ -15,7 +15,15 @@
   "engines": {
     "node": "0.10.x"
   },
-  "keywords": ["map","maps","places","kudomap","kudomaps","kudos","reddit","voat"
+  "keywords": [
+    "map",
+    "maps",
+    "places",
+    "kudomap",
+    "kudomaps",
+    "kudos",
+    "reddit",
+    "voat"
   ],
   "author": "Ben Gundersen",
   "license": "ISC",
@@ -24,21 +32,22 @@
   },
   "homepage": "https://github.com/bgun/kudomap#readme",
   "dependencies": {
-    "bluebird": "^2.9.32",
-    "express": "^4.13.1",
-    "lodash": "^3.10.0",
-    "mapbox-gl": "^0.8.1",
-    "page": "^1.6.3",
-    "react": "^0.13.3",
     "babel": "^5.6.14",
     "babelify": "^6.1.2",
+    "bluebird": "^2.9.32",
     "browserify": "^10.2.4",
+    "express": "^4.13.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-less": "^3.0.3",
     "gulp-live-server": "0.0.23",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-watch": "^4.2.4",
+    "lodash": "^3.10.0",
+    "mapbox-gl": "^0.8.1",
+    "page": "^1.6.3",
+    "pg": "^4.4.0",
+    "react": "^0.13.3",
     "vinyl-source-stream": "^1.1.0"
   }
 }

@@ -1,14 +1,16 @@
 'use strict';
 
-var _     = require('lodash');
-var page  = require('page');
-var React = require('react');
+import _     from 'lodash';
+import page  from 'page';
+import React from 'react';
 
-var App = require('./app.js');
+import App from './app.js';
 
 (function() {
 
-  global.app = new App();
+  global.app = new App({
+    mapbox_token: "pk.eyJ1IjoiYmd1biIsImEiOiJlRTVXbENBIn0.tVaSmhr0MXPtu8hdktMl3g"
+  });
 
   global.app.routes.forEach(function(route) {
     console.log("Adding route: "+route.path);

@@ -35,7 +35,7 @@ gulp.task('less', function() {
     .pipe(gulp.dest('./build/public'));
 });
 
-gulp.task('serve', ['babel'], function() {
+gulp.task('serve', ['compile'], function() {
   gulp.watch('less/*.less',  ['less']);
   gulp.watch('src/**/*.js',  ['compile']);
   gulp.watch('build/public/*', function(ev) {
@@ -44,6 +44,9 @@ gulp.task('serve', ['babel'], function() {
   livereload.start();
 });
 
-gulp.task('compile', ['babel','browserify']);
-gulp.task('build',   ['babel','browserify','less']);
-gulp.task('default', ['serve']);
+// transform JS and bundle for the client
+gulp.task('compile', ['babel',  'browserify']);
+// bundle everything
+gulp.task('build',   ['compile','less']);
+// start dev server
+gulp.task('default', ['build',  'serve']);

@@ -1,12 +1,12 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
 module.exports = class KudoPage extends React.Component {
 
   componentDidMount() {
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYmd1biIsImEiOiJlRTVXbENBIn0.tVaSmhr0MXPtu8hdktMl3g';
+    mapboxgl.accessToken = global.app.settings.mapbox_token;
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'https://www.mapbox.com/mapbox-gl-styles/styles/emerald-v7.json',
