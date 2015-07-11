@@ -13,12 +13,13 @@ module.exports = function(req, res, settings) {
 
     // TODO: validate req.params against a schema
     var q = `INSERT INTO shard_1.posts
-             (title, topic)
-             VALUES ($1, $2)
+             (title, content, topic_id)
+             VALUES ($1, $2, $3)
              RETURNING *`;
     var values = [
       req.body.title,
-      req.body.content
+      req.body.content,
+      req.body.topic_id
     ];
     client.query(q, values, function(err, result) {
       done(); // release the client back to the pool
@@ -31,7 +32,7 @@ module.exports = function(req, res, settings) {
       } else {
         res.send({
           code: 0,
-          topic: result.rows[0]
+          post: result.rows[0]
         });
       }
     });
