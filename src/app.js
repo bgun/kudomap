@@ -19,7 +19,7 @@ module.exports = class App {
 
     this.routes = [
       { name: 'feed', path: '/',        controller: FeedRoute },
-      { name: 'kudo', path: '/k/:kudo', controller: KudoRoute }
+      { name: 'kudo', path: '/t/:kudo', controller: KudoRoute }
     ];
   }
 
