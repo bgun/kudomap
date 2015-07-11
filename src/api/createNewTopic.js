@@ -11,19 +11,22 @@ module.exports = function(req, res, settings) {
   pg.connect(settings.db_conn, function(err, client, done) {
     if(err) { throw err; }
 
-    var q = `SELECT * FROM shard_1.topics WHERE name = $1`;
+    // TODO: validate req.params against a schema
+    var q = `INSERT INTO shard_1.topics
+             (name, description)
+             VALUES ($1, $2)
+             RETURNING *`;
     var values = [
-      req.params.name
+      req.body.name,
+      req.body.description
     ];
     client.query(q, values, function(err, result) {
-      //call `done()` to release the client back to the pool
-      done();
+      done(); // release the client back to the pool
 
       if(err) {
-        console.error('error running query', err);;
         res.send({
           code: 1,
-          error: 'Error running query: '+err
+          error: err
         });
       } else {
         res.send({
@@ -31,7 +34,6 @@ module.exports = function(req, res, settings) {
           topic: result.rows[0]
         });
       }
-
     });
   });
 

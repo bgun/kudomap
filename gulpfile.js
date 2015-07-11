@@ -2,7 +2,7 @@
 
 var gulp       = require('gulp');
 var babel      = require('gulp-babel');
-var babelify   = require('babelify');
+//var babelify   = require('babelify');
 var browserify = require('browserify');
 var gls        = require('gulp-live-server');
 var less       = require('gulp-less');
@@ -16,8 +16,7 @@ gulp.task('browserify', ['babel'], function() {
   browserify({
     entries: './build/client.js',
     debug: true
-  }).transform(babelify)
-    .bundle()
+  }).bundle()
     .pipe(source('client-bundle.js'))
     .pipe(gulp.dest('./build/public'));
 });

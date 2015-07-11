@@ -2,8 +2,8 @@
 
 import _ from 'lodash';
 
-import FeedRoute from './routes/FeedRoute.js';
-import KudoRoute from './routes/KudoRoute.js';
+import FeedRoute  from './routes/FeedRoute.js';
+import TopicRoute from './routes/TopicRoute.js';
 
 module.exports = class App {
 
@@ -18,8 +18,8 @@ module.exports = class App {
     }, settings);
 
     this.routes = [
-      { name: 'feed', path: '/',        controller: FeedRoute },
-      { name: 'kudo', path: '/t/:kudo', controller: KudoRoute }
+      { name: 'feed',  path: '/',         controller: FeedRoute },
+      { name: 'topic', path: '/t/:topic', controller: TopicRoute }
     ];
   }
 

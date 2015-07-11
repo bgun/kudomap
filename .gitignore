@@ -1,6 +1,10 @@
 .idea/
 node_modules/
+
+
+# built files
 build/
+TODO.md
 
 *.swp
 *.log

@@ -11,11 +11,9 @@ module.exports = function(req, res, settings) {
   pg.connect(settings.db_conn, function(err, client, done) {
     if(err) { throw err; }
 
-    var q = `SELECT * FROM shard_1.topics WHERE name = $1`;
-    var values = [
-      req.params.name
-    ];
-    client.query(q, values, function(err, result) {
+    var q = `SELECT * FROM shard_1.topics`;
+
+    client.query(q, function(err, result) {
       //call `done()` to release the client back to the pool
       done();
 
@@ -28,10 +26,9 @@ module.exports = function(req, res, settings) {
       } else {
         res.send({
           code: 0,
-          topic: result.rows[0]
+          topics: result.rows
         });
       }
-
     });
   });
 
