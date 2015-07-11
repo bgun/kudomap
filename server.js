@@ -10,7 +10,12 @@ var server = express();
 
 var App = require('./build/app.js');
 
-var indexHtml = fs.readFileSync('./index.html', { encoding: 'utf-8' });
+var apiManager = require('./build/api.js');
+
+// TODO: Cache all HTML
+// var indexHtml = fs.readFileSync('./index.html', { encoding: 'utf-8' });
+
+console.log('\n\n### ROUTES\n');
 
 global.app = new App();
 global.app.routes.forEach(function(route) {
@@ -26,7 +31,9 @@ global.app.routes.forEach(function(route) {
         // a static HTML string. This is our page content.
         var elementHtml = React.renderToStaticMarkup(payload.element);
         // replace token values in the source HTML file
-        var html = indexHtml
+
+        // TODO: after caching HTML above, change this line
+        var html = fs.readFileSync('./index.html', { encoding: 'utf-8' })
           .replace('{{HEAD}}',    payload.header)
           .replace('{{CONTENT}}', elementHtml);
         res.setHeader('Content-Type','text/html');
@@ -39,6 +46,15 @@ global.app.routes.forEach(function(route) {
 
 });
 
+console.log('\n\n### API PATHS\n');
+
+apiManager.routes.forEach(function(handler) {
+
+  console.log("Adding API path: ", handler.path);
+
+});
+
+console.log('\nServing static assets at /public');
 server.use('/public', express.static('./public'));
 server.use('/public', express.static('./build/public'));
 
@@ -47,5 +63,5 @@ server.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
-console.log("Server listening on port %d", port);
+console.log("\nServer started successfully, listening on port %d", port);
 server.listen(port);

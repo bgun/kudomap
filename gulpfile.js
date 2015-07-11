@@ -8,6 +8,7 @@ var gls        = require('gulp-live-server');
 var less       = require('gulp-less');
 var source     = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
+var todo       = require('gulp-todo');
 
 var livereload = gls.new('./server.js');
 
@@ -42,6 +43,12 @@ gulp.task('serve', ['compile'], function() {
     livereload.notify(ev);
   });
   livereload.start();
+});
+
+gulp.task('todo', function() {
+  gulp.src(['./server.js','./src/**/*.js'])
+    .pipe(todo())
+    .pipe(gulp.dest('./'));
 });
 
 // transform JS and bundle for the client
