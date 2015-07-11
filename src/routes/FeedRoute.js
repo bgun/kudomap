@@ -1,6 +1,8 @@
 'use strict';
 
-var React = require('react');
+import Promise from 'bluebird';
+import React   from 'react';
+
 
 class FeedPage extends React.Component {
 
@@ -19,8 +21,9 @@ module.exports = function(params) {
 
   return new Promise(function(resolve, reject) {
     resolve({
-      header: "",
-      element: React.createElement(FeedPage, params)
+      title   : "Feed",
+      header  : "",
+      element : React.createElement(FeedPage, params)
     });
   });
 

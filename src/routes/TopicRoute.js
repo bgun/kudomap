@@ -1,14 +1,16 @@
 'use strict';
 
-var React = require('react');
+import Promise from 'bluebird';
+import React   from 'react';
 
-var KudoPage = require('../components/pages/KudoPage.js');
+import KudoPage from '../components/pages/KudoPage.js';
+
 
 module.exports = function(params) {
 
   return new Promise(function(resolve, reject) {
     resolve({
-      title: "Kudo",
+      title: "Topic",
       header: "",
       element: React.createElement(KudoPage, params)
     });

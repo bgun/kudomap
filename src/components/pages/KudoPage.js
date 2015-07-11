@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+
 module.exports = class KudoPage extends React.Component {
 
   componentDidMount() {
