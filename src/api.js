@@ -52,7 +52,7 @@ module.exports = {
     {
       handler : getPostsForTopic,
       method  : 'GET',
-      path    : '/posts/topic/topic_id'
+      path    : '/posts/topic/:topic_id'
     },
     {
       handler : createNewPost,
