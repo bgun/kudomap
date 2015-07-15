@@ -10,7 +10,7 @@ export default function TopicRoute(params) {
 
   return new Promise(function(resolve, reject) {
 
-    var url = '/api/posts/topic/'+params.topic;
+    var url = 'api/posts/topic/'+params.topic;
     global.app.requestHelper.get(url, { key: 'posts' })
       .then(function(posts) {
         resolve({

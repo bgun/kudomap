@@ -28,7 +28,7 @@ var apiManager = require('./build/api.js');
 console.log('\n\n### ROUTES\n');
 
 global.app = new App({
-  api_url: 'http://localhost:9000',
+  api_url: 'http://localhost:9000/',
 });
 global.app.routes.forEach(function(route) {
 

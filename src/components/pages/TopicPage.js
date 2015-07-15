@@ -15,7 +15,7 @@ export default class KudoPage extends React.Component {
     });
 
     return (
-      <div id="topicPage">
+      <div id="topicPage" className="page">
         <NavBar />
         <section id="topicHeader">
           <h1>{ this.props.kudo }</h1>

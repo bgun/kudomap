@@ -1,3 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+@navbar-height: 5rem;
+
+html, body {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 10px;
+}
+
 .page-red {
   background: red;
 }
@@ -10,4 +21,54 @@
 }
 #kudo-page {
   .page-blue;
+}
+
+.page {
+  margin-top: @navbar-height;
+}
+
+/* Global styles */
+
+ul.list-horiz {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .list-title {
+    display: inline-block;
+    margin: 0 2rem 0 0;
+  }
+
+  li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 2rem 0 0;
+    padding: 0;
+  }
+}
+
+
+#navBar {
+  background: #F8F8F8;
+  border-bottom: 1px solid #EEE;
+  font-size: 1.5rem;
+  height: @navbar-height;
+  line-height: 5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  #navBar-title {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .list-horiz {
+    position: absolute;
+      top: 0;
+      left: 20rem;
+  }
 }

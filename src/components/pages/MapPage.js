@@ -29,7 +29,7 @@ export default class KudoPage extends React.Component {
 
   render() {
     return (
-      <div id="kudo-page">
+      <div id="mapPage" className="page">
         <NavBar />
         <h1>{ this.props.kudo }</h1>
         <div id="map" style={{ width: '800px', height: '600px' }}></div>
