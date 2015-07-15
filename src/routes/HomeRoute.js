@@ -10,14 +10,14 @@ class FeedPage extends React.Component {
     return (
       <div id="feed-page">
         <h1>Feed</h1>
-        <a href="/k/ben">Kudo: Ben</a>
+        <a href="/t/">Kudo: Ben</a>
       </div>
     )
   }
 
 }
 
-module.exports = function(params) {
+export default function HomeRoute(params) {
 
   return new Promise(function(resolve, reject) {
     resolve({

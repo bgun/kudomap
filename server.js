@@ -27,13 +27,16 @@ var apiManager = require('./build/api.js');
 
 console.log('\n\n### ROUTES\n');
 
-global.app = new App();
+global.app = new App({
+  api_url: 'http://localhost:9000',
+});
 global.app.routes.forEach(function(route) {
 
   console.log("Adding route: "+route.path);
   server.get(route.path, function(req, res) {
     console.log("Following route %s",route.path, req.params);
     // Routes return a promise for a React element
+    console.log(route);
     route.controller.apply(global.app, [req.params, req.query])
       .then(function(route_payload) {
         var payload = _.extend({}, App.defaults().route_payload, route_payload);

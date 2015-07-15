@@ -11,6 +11,7 @@ module.exports = function(req, res, settings) {
   pg.connect(settings.db_conn, function(err, client, done) {
     if(err) { throw err; }
 
+    // TODO: don't select *!
     var q = `SELECT * FROM shard_1.topics`;
 
     client.query(q, function(err, result) {

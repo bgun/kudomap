@@ -3,17 +3,23 @@
 import Promise from 'bluebird';
 import React   from 'react';
 
-import KudoPage from '../components/pages/KudoPage.js';
+import TopicPage from '../components/pages/TopicPage.js';
 
 
-module.exports = function(params) {
+export default function TopicRoute(params) {
 
   return new Promise(function(resolve, reject) {
-    resolve({
-      title: "Topic",
-      header: "",
-      element: React.createElement(KudoPage, params)
-    });
+
+    var url = '/api/posts/topic/'+params.topic;
+    global.app.requestHelper.get(url, { key: 'posts' })
+      .then(function(posts) {
+        resolve({
+          title: "Topic",
+          header: "",
+          element: React.createElement(TopicPage, { posts: posts })
+        });
+
+      });
   });
 
 }

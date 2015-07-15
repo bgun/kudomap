@@ -11,6 +11,7 @@ module.exports = function(req, res, settings) {
   pg.connect(settings.db_conn, function(err, client, done) {
     if(err) { throw err; }
 
+    // TODO: don't select *!
     var q = `SELECT * FROM shard_1.topics WHERE name = $1`;
     var values = [
       req.params.name
@@ -18,6 +19,8 @@ module.exports = function(req, res, settings) {
     client.query(q, values, function(err, result) {
       //call `done()` to release the client back to the pool
       done();
+
+      console.log(result.rows);
 
       if(err) {
         console.error('error running query', err);;

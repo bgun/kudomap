@@ -9,6 +9,7 @@ import App from './app.js';
 (function() {
 
   global.app = new App({
+    api_url: '/',
     mapbox_token: "pk.eyJ1IjoiYmd1biIsImEiOiJlRTVXbENBIn0.tVaSmhr0MXPtu8hdktMl3g"
   });
 

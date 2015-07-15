@@ -12,9 +12,12 @@ module.exports = function(req, res, settings) {
     if(err) { throw err; }
 
     var default_limit = 10;
-    var q = `SELECT * FROM shard_1.posts WHERE topic_id = $1 ORDER BY created_at LIMIT $2`;
+    // TODO: don't select *!
+    var q = `SELECT * FROM shard_1.posts
+             LEFT JOIN shard_1.topics ON topics.id = posts.topic_id
+             WHERE topics.name = $1 ORDER BY posts.created_at LIMIT $2`;
     var values = [
-      req.params.topic_id,
+      req.params.topic_name,
       req.params.limit || default_limit
     ];
 
