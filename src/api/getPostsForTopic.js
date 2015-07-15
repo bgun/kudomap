@@ -12,8 +12,8 @@ module.exports = function(req, res, settings) {
     if(err) { throw err; }
 
     var default_limit = 10;
-    // TODO: don't select *!
-    var q = `SELECT * FROM shard_1.posts
+    var q = `SELECT posts.id AS post_id, posts.title, posts.created_at
+             FROM shard_1.posts
              LEFT JOIN shard_1.topics ON topics.id = posts.topic_id
              WHERE topics.name = $1 ORDER BY posts.created_at LIMIT $2`;
     var values = [

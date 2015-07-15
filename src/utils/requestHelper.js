@@ -15,7 +15,6 @@ export default class RequestHelper {
 
     var key = options.key;
     var final_url = this.baseUrl+url;
-    console.log("making request: %s", final_url, options);
 
     return new Promise(function(resolve, reject) {
       request

@@ -20,8 +20,6 @@ module.exports = function(req, res, settings) {
       //call `done()` to release the client back to the pool
       done();
 
-      console.log(result.rows);
-
       if(err) {
         console.error('error running query', err);;
         res.send({

@@ -10,13 +10,12 @@ var port = process.env.PORT || 9000;
 
 var server = express();
 
-server.use(bodyParser.json());      // to support JSON-encoded bodies
-//server.use(express.json());         // to support JSON-encoded bodies
-// For now, all POSTs should be JSON
-//server.use(bodyParser.urlencoded({  // to support URL-encoded bodies
-//  extended: true
-//}));
-//server.use(express.urlencoded());   // to support URL-encoded bodies
+server.use(bodyParser.json()); // to support JSON-encoded bodies
+/* Uncomment to support URL-encoded POSTs.
+ * server.use(bodyParser.urlencoded({  // to support URL-encoded bodies
+ *   extended: true
+ * }));
+ */
 
 var App = require('./build/app.js');
 
@@ -35,6 +34,7 @@ global.app.routes.forEach(function(route) {
   console.log("Adding route: "+route.path);
   server.get(route.path, function(req, res) {
     console.log("Following route %s",route.path, req.params);
+
     // Routes return a promise for a React element
     console.log(route);
     route.controller.apply(global.app, [req.params, req.query])
@@ -59,9 +59,8 @@ global.app.routes.forEach(function(route) {
 
 });
 
-console.log('\n\n### API PATHS\n');
-
 var settings = {
+  // Heroku Postgres credentials
   db_conn: {
     user     : "sdiaxjudkljxoc",
     password : "bx1UQAEo1ymJ07zb6JcWytHohc",
@@ -71,6 +70,8 @@ var settings = {
     ssl      : true
   }
 };
+
+console.log('\n\n### API PATHS\n');
 
 apiManager.routes.forEach(function(api_route) {
 
@@ -91,14 +92,20 @@ apiManager.routes.forEach(function(api_route) {
 
 });
 
+// Serving static assets from /public. Multiple entries for the
+// same paths override in order. For example, the file /build/public/foo.css
+// would be shown instead of /public/foo.css. In general, though, try
+// to avoid any overlapping names to minimize confusion.
 console.log('\nServing static assets at /public');
 server.use('/public', express.static('./public'));
 server.use('/public', express.static('./build/public'));
 
+// 404 Not Found error page
 server.get('*', function(req, res) {
   res.status(404).send('<h1>404 not found</h1>');
 });
 
+// 500 Server Error page
 server.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('<h1>Something broke!</h1>');

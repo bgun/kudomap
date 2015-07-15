@@ -2,17 +2,14 @@
 
 import React from 'react';
 
-import NavBar from '../NavBar.js';
+import NavBar   from '../NavBar.js';
+import PostItem from '../PostItem.js';
 
-export default class KudoPage extends React.Component {
+export default class TopicPage extends React.Component {
 
   render() {
 
-    var postsList = this.props.posts.map(function(p) {
-      return (
-        <li>{ p.title }</li>
-      );
-    });
+    console.log(this.props.posts);
 
     return (
       <div id="topicPage" className="page">
@@ -21,8 +18,8 @@ export default class KudoPage extends React.Component {
           <h1>{ this.props.kudo }</h1>
         </section>
         <section id="topicPosts">
-          <ul>
-            { postsList }
+          <ul className="post-list">
+            { this.props.posts.map(p => <PostItem key={ p.post_id } post={ p } />) }
           </ul>
         </section>
       </div>
