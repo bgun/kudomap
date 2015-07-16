@@ -11,6 +11,7 @@ module.exports = function(req, res, settings) {
   pg.connect(settings.db_conn, function(err, client, done) {
     if(err) { throw err; }
 
+    // TODO: don't select *!
     var q = `SELECT * FROM shard_1.posts WHERE post_id = $1`;
     var values = [
       req.params.topic_id

@@ -11,28 +11,33 @@ module.exports = function(req, res, settings) {
   pg.connect(settings.db_conn, function(err, client, done) {
     if(err) { throw err; }
 
-    // TODO: don't select *!
-    var q = `SELECT * FROM shard_1.topics WHERE topic_id = $1`;
+    // TODO: validate req.params against a schema
+    var q = `INSERT INTO shard_1.maps
+             (name, default_lat, default_lon, default_zoom, creating_user_id, style)
+             VALUES ($1, $2, $3, $4, $5, $6)
+             RETURNING *`;
     var values = [
-      req.params.topic_id
+      req.body.name,
+      req.body.default_lat,
+      req.body.default_lon,
+      req.body.default_zoom,
+      req.body.creating_user_id,
+      req.body.style
     ];
     client.query(q, values, function(err, result) {
-      //call `done()` to release the client back to the pool
-      done();
+      done(); // release the client back to the pool
 
       if(err) {
-        console.error('error running query', err);;
         res.send({
           code: 1,
-          error: 'Error running query: '+err
+          error: err
         });
       } else {
         res.send({
           code: 0,
-          topic: result.rows[0]
+          post: result.rows[0]
         });
       }
-
     });
   });
 

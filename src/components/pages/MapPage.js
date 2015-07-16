@@ -4,7 +4,7 @@ import React from 'react';
 
 import NavBar from '../NavBar.js';
 
-export default class KudoPage extends React.Component {
+export default class MapPage extends React.Component {
 
   componentDidMount() {
 
@@ -31,7 +31,7 @@ export default class KudoPage extends React.Component {
     return (
       <div id="mapPage" className="page">
         <NavBar />
-        <h1>{ this.props.kudo }</h1>
+        <h1>This is a map</h1>
         <div id="map" style={{ width: '800px', height: '600px' }}></div>
         <a href="/">Back Home</a>
       </div>

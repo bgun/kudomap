@@ -23,9 +23,10 @@ export default class App {
     })
 
     this.routes = [
-      { name: 'feed',  path: '/',         controller: HomeRoute },
-      { name: 'map',   path: '/m/:map',   controller: MapRoute },
-      { name: 'topic', path: '/t/:topic', controller: TopicRoute }
+      { name: 'feed',  path: '/',                       controller: HomeRoute  },
+      { name: 'map',   path: '/m/:map',                 controller: MapRoute   },
+      { name: 'post',  path: '/t/:topic/post/:post_id', controller: PostRoute  },
+      { name: 'topic', path: '/t/:topic',               controller: TopicRoute }
     ];
   }
 
