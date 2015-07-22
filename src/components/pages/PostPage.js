@@ -6,9 +6,8 @@ import NavBar from '../NavBar.js';
 
 export default class PostPage extends React.Component {
 
-  var post = this.props.post;
-
   render() {
+    var post = this.props.post;
     return (
       <div id="postPage" className="page">
         <NavBar />

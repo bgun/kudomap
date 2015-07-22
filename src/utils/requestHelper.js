@@ -20,7 +20,6 @@ export default class RequestHelper {
       request
         .get(final_url)
         .end(function(err, res) {
-          console.log(err, res);
           if(err) { reject(err); }
           if(res && res.ok) {
             resolve(res.body[key]);

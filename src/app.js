@@ -4,9 +4,11 @@ import _ from 'lodash';
 
 import HomeRoute  from './routes/HomeRoute.js';
 import MapRoute   from './routes/MapRoute.js';
+import PostRoute  from './routes/PostRoute.js';
 import TopicRoute from './routes/TopicRoute.js';
 
 import RequestHelper from './utils/RequestHelper.js';
+
 
 export default class App {
 
@@ -20,7 +22,7 @@ export default class App {
     }, app_settings);
     this.requestHelper = new RequestHelper({
       baseUrl: this.settings.api_url
-    })
+    });
 
     this.routes = [
       { name: 'feed',  path: '/',                       controller: HomeRoute  },

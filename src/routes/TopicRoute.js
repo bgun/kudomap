@@ -10,7 +10,7 @@ export default function TopicRoute(params) {
 
   return new Promise(function(resolve, reject) {
 
-    var url = 'api/post/'+params.post_id;
+    var url = 'api/posts/topic/'+params.topic;
     global.app.requestHelper.get(url, { key: 'posts' })
       .then(function(posts) {
         resolve({
@@ -19,6 +19,7 @@ export default function TopicRoute(params) {
           element: React.createElement(TopicPage, { posts: posts })
         });
       });
+
   });
 
 }
