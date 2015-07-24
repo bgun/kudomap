@@ -4,6 +4,7 @@ import getFeatureById    from './api/getFeatureById.js';
 import getFeaturesForMap from './api/getFeaturesForMap.js';
 
 import getMapById        from './api/getMapById.js';
+import createNewMap      from './api/createNewMap.js';
 
 import getPostById       from './api/getPostById.js';
 import getPostsForTopic  from './api/getPostsForTopic.js';
@@ -40,6 +41,11 @@ module.exports = {
       handler : getMapById,
       method  : 'GET',
       path    : '/map/:map_id'
+    },
+    {
+      handler : createNewMap,
+      method  : 'POST',
+      path    : '/map/new'
     },
 
 
