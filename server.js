@@ -46,6 +46,7 @@ _.each(routes, function(route) {
     console.log(route);
     route.controller.apply(global.app, [req.params, req.query])
       .then(function(route_payload) {
+        console.log("wat");
         // render the ReactElement returned by the controller to
         // a static HTML string. This is our page content.
         var elementHtml = React.renderToString(React.createElement(App, {

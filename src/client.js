@@ -2,25 +2,19 @@
 
 import _     from 'lodash';
 import page  from 'page';
+import Parse from 'parse';
 import React from 'react';
 
 import App from './App.js';
 
 import routes from './routes.js';
 
-import RequestHelper from './utils/RequestHelper.js';
 
 (function() {
 
-  window.stuff = {
-    requestHelper: new RequestHelper({
-      baseUrl: '/'
-    })
-  };
+  Parse.initialize("1by1WRUVNk60ElY2sAxjLfDGqwEoLw7LR7ebSaBw", "ptyZJUMya0BIE3zGST0Y0X4chLhzfR1Z3JZLATpW");
 
-  let routeContext = new App({
-    mapbox_token: "pk.eyJ1IjoiYmd1biIsImEiOiJlRTVXbENBIn0.tVaSmhr0MXPtu8hdktMl3g"
-  });
+  let routeContext = {};
 
   let pageEl = document.getElementById('page');
   if (!pageEl) {

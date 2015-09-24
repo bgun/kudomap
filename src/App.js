@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import Parse from 'parse';
 import _     from 'lodash';
 
 
@@ -8,14 +9,9 @@ export default class App extends React.Component {
 
   constructor(props) {
     super();
-    /*
-    this.settings = _.extend({
-      // Settings that both client and server will need go here.
-      // The client will have browser-specific tokens such as
-      // Mapbox/Facebook access tokens, and the server will have
-      // private constants like secret keys.
-    }, app_settings);
-    */
+  }
+
+  componentDidMount() {
   }
 
   // defaults for various object types
