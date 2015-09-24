@@ -1,6 +1,5 @@
 'use strict';
 
-import Promise from 'bluebird';
 import React   from 'react';
 
 import PostPage from '../components/pages/PostPage.js';
@@ -16,7 +15,8 @@ export default function PostRoute(params) {
         resolve({
           title: "Post",
           header: "",
-          element: React.createElement(PostPage, params)
+          component: PostPage,
+          componentProps: params
         });
       });
 

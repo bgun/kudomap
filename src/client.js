@@ -4,24 +4,42 @@ import _     from 'lodash';
 import page  from 'page';
 import React from 'react';
 
-import App from './app.js';
+import App from './App.js';
+
+import routes from './routes.js';
+
+import RequestHelper from './utils/RequestHelper.js';
 
 (function() {
 
-  global.app = new App({
-    api_url: '/',
+  window.stuff = {
+    requestHelper: new RequestHelper({
+      baseUrl: '/'
+    })
+  };
+
+  let routeContext = new App({
     mapbox_token: "pk.eyJ1IjoiYmd1biIsImEiOiJlRTVXbENBIn0.tVaSmhr0MXPtu8hdktMl3g"
   });
 
-  global.app.routes.forEach(function(route) {
+  let pageEl = document.getElementById('page');
+  if (!pageEl) {
+    throw new Error("########### ERROR: No page element!");
+  }
+
+  _.each(routes, function(route) {
     console.log("Adding route: "+route.path);
     page(route.path, function(ctx) {
       console.log("Following route %s",route.path, ctx.params);
       // Routes return a promise for a React element
-      route.controller.call(global.app, ctx.params)
+
+      route.controller.call(routeContext, ctx.params)
         .then(function(route_payload) {
-          var payload = _.extend({}, App.defaults().route_payload, route_payload);
-          React.render(payload.element, document.getElementById('page'));
+
+          React.render(
+            <App component={ route_payload.component }
+                 componentProps={ route_payload.componentProps } />
+          , pageEl);
         });
     });
   });

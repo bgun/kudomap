@@ -1,6 +1,5 @@
 'use strict';
 
-import Promise from 'bluebird';
 import React   from 'react';
 
 import FeedPage from '../components/pages/FeedPage.js';
@@ -12,7 +11,8 @@ export default function HomeRoute(params) {
     resolve({
       title   : "Feed",
       header  : "",
-      element : React.createElement(FeedPage, params)
+      component: FeedPage,
+      componentProps: params
     });
   });
 

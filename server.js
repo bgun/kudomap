@@ -1,10 +1,15 @@
 'use strict';
 
 var _          = require('lodash');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var express    = require('express');
 var fs         = require('fs');
 var React      = require('react');
+
+var RequestHelper = require('./build/utils/RequestHelper.js');
+
+var App        = require('./build/App.js');
+var routes     = require('./build/routes.js');
 
 var port = process.env.PORT || 9000;
 
@@ -26,10 +31,12 @@ var apiManager = require('./build/api.js');
 
 console.log('\n\n### ROUTES\n');
 
-global.app = new App({
-  api_url: 'http://localhost:9000/',
-});
-global.app.routes.forEach(function(route) {
+global.stuff = {
+  requestHelper: new RequestHelper({
+    baseUrl: 'http://localhost:9000/'
+  })
+};
+_.each(routes, function(route) {
 
   console.log("Adding route: "+route.path);
   server.get(route.path, function(req, res) {
@@ -39,16 +46,19 @@ global.app.routes.forEach(function(route) {
     console.log(route);
     route.controller.apply(global.app, [req.params, req.query])
       .then(function(route_payload) {
-        var payload = _.extend({}, App.defaults().route_payload, route_payload);
         // render the ReactElement returned by the controller to
         // a static HTML string. This is our page content.
-        var elementHtml = React.renderToStaticMarkup(payload.element);
+        var elementHtml = React.renderToString(React.createElement(App, {
+          component: route_payload.component,
+          componentProps: route_payload.componentProps
+        }));
         // replace token values in the source HTML file
 
         // TODO: after caching HTML above, change this line
         var html = fs.readFileSync('./index.html', { encoding: 'utf-8' })
-          .replace('{{HEAD}}',    payload.header)
+          .replace('{{HEAD}}',    route_payload.header)
           .replace('{{CONTENT}}', elementHtml);
+
         res.setHeader('Content-Type','text/html');
         res.send(html);
       })
