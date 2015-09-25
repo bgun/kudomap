@@ -15,7 +15,7 @@ export default class MapPage extends React.Component {
     mapboxgl.accessToken = "pk.eyJ1IjoiYmd1biIsImEiOiJlRTVXbENBIn0.tVaSmhr0MXPtu8hdktMl3g";
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'https://www.mapbox.com/mapbox-gl-styles/styles/emerald-v7.json',
+      style: '/public/mapstyle/emerald-v7-copy.json',
       center: [40.74, -74],
       zoom: 12
     });
@@ -59,11 +59,11 @@ export default class MapPage extends React.Component {
           "type": "symbol",
           "source": "markers",
           "layout": {
-            //"icon-image": "{marker-symbol}-15",
+            "icon-image": "{marker-symbol}_icon",
             "text-field": "{title}",
             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 0.6],
-            "text-anchor": "top"
+            "text-offset": [0, 1.5], // originally 0,0.6
+            "text-anchor": "center"
           },
           "paint": {
             "text-size": 12
