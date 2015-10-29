@@ -47,7 +47,7 @@
     "gulp-todo": "^3.1.1",
     "gulp-watch": "^4.2.4",
     "lodash": "^3.10.0",
-    "mapbox-gl": "^0.8.1",
+    "mapbox-gl": "^0.11.1",
     "page": "^1.6.3",
     "parse": "^1.6.3",
     "parse-react": "^0.5.0",

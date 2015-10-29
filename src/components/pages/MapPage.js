@@ -17,8 +17,10 @@ export default class MapPage extends React.Component {
       container: 'map',
       style: '/public/mapstyle/emerald-v7-copy.json',
       center: [40.74, -74],
-      zoom: 12
+      zoom: 12,
     });
+
+    map.collisionDebug = true;
 
     var source = new mapboxgl.GeoJSONSource();
 
@@ -30,14 +32,13 @@ export default class MapPage extends React.Component {
       .find()
       .then(function(resp) {
 
-        console.log(resp);
+        console.log(resp.length);
 
         source.setData({
-          "type": "FeatureCollection",
-          "features": resp.map(function(r) {
+          type: "FeatureCollection",
+          features: resp.map(function(r) {
             var name = r.get('name');
             var LL = r.get('position');
-            console.log(LL);
             return {
               "type": "Feature",
               "geometry": {
@@ -59,9 +60,13 @@ export default class MapPage extends React.Component {
           "type": "symbol",
           "source": "markers",
           "layout": {
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true,
             "icon-image": "{marker-symbol}_icon",
             "text-field": "{title}",
             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-allow-overlap": true,
+            "text-ignore-placement": true,
             "text-offset": [0, 1.5], // originally 0,0.6
             "text-anchor": "center"
           },
@@ -83,10 +88,9 @@ export default class MapPage extends React.Component {
       f.set('Test', 1);
       f.save()
         .then(function(ev) {
-          console.log("new marker saved");
           var name = ev.get('name');
           var LL = ev.get('position');
-          console.log(name, LL);
+          console.log("new marker", name, LL);
           source.setData({
             type: 'FeatureCollection',
             features: source._data.features.concat([{
