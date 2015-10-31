@@ -20,7 +20,7 @@ export default class MapPage extends React.Component {
       zoom: 12,
     });
 
-    map.collisionDebug = true;
+    // map.collisionDebug = true;
 
     var source = new mapboxgl.GeoJSONSource();
 
